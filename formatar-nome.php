@@ -18,10 +18,8 @@
 
 	function formatarNomeA($inputNome)
 	{
-		// Passando o nome para letras minúsculas.
-		$nomeC = strtolower($inputNome);
-		// Transformando o nome em uma array.
-		$nomeC = explode(" ", $nomeC);
+		// Passando o nome para letras minúsculas e transformando o nome em uma array.
+		$nomeC = explode(" ", strtolower($inputNome));
 
 		foreach ($nomeC as $nome)
 		{
@@ -50,22 +48,13 @@
 	{
 		// Criando uma array de filtro
 		$filtro = ["das", "da", "dos", "do", "de", "e"];
-		// Passando o nome para letras minúsculas.
-		$nomeC = strtolower($inputNome);
-		// Transformando o nome em uma array.
-		$nomeC = explode(" ", $nomeC);
+		// Passando o nome para letras minúsculas e transformando o nome em uma array.
+		$nomeC = explode(" ", strtolower($inputNome));
 
 		foreach ($nomeC as $nome)
 		{
 			// Processo os valores da array no filtro.
-			if(in_array($nome, $filtro))
-			{
-				$nomeF[] = $nome;
-			}
-			else
-			{
-				$nomeF[] = ucfirst($nome);
-			}
+			$nomeF[] = (in_array($nome, $filtro)) ? $nome : ucfirst($nome);
 		}
 
 		// Transformando a array em uma string.
