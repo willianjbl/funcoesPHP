@@ -2,17 +2,21 @@
 	/*
 		Desenvolvi esta função com o intuito de formatar um nome recebido por input,
 		o qual poderia ser por ex.: 'JOão ClÁudio dE oLivEira Da sIlvA',
-		e após a função processar, retornar: 'João Cláudio de Oliveira da Silva'
+		e após a função processar, retornar: 'João Cláudio de Oliveira da Silva'.
 	*/
 
-	// Nome a ser testado pela função
+	// Nome a ser testado pela função.
 	$nome = "wiLLiaN Dos saNtOs DoS ReIs dAs Chagas Da SiLvA dO CaRmo e rAmoS LúCiO";
 
-	echo formatarNome($nome);
+	echo formatarNomeA($nome);
 
-	//--------------------------------------------------------------------------------
+	echo "<br>";
 
-	function formatarNome($inputNome)
+	echo formatarNomeB($nome);
+
+	//-----------------------------# Método 1 ----------------------------------------
+
+	function formatarNomeA($inputNome)
 	{
 		// Passando o nome para letras minúsculas.
 		$nomeC = strtolower($inputNome);
@@ -34,6 +38,37 @@
 		}
 
 		// Transformando a array em string.
+		$nome = implode(" ", $nomeF);
+
+		// Retornando nome formatado.
+		return $nome;
+	}
+
+	//------------------------------ Método #2 ---------------------------------------
+
+	function formatarNomeB($inputNome)
+	{
+		// Criando uma array de filtro
+		$filtro = ["das", "da", "dos", "do", "de", "e"];
+		// Passando o nome para letras minúsculas.
+		$nomeC = strtolower($inputNome);
+		// Transformando o nome em uma array.
+		$nomeC = explode(" ", $nomeC);
+
+		foreach ($nomeC as $nome)
+		{
+			// Processo os valores da array no filtro.
+			if(in_array($nome, $filtro))
+			{
+				$nomeF[] = $nome;
+			}
+			else
+			{
+				$nomeF[] = ucfirst($nome);
+			}
+		}
+
+		// Transformando a array em uma string.
 		$nome = implode(" ", $nomeF);
 
 		// Retornando nome formatado.
